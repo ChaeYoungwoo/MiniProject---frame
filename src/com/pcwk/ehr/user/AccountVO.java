@@ -3,7 +3,7 @@ package com.pcwk.ehr.user;
 import java.util.Objects;
 
 public class AccountVO {
-
+	public static AccountVO loginVO = null;
 	private String AccountNo; // 계좌번호
 	private String userName; // 소유주명
 	private String userPw; // 계좌 비밀번호

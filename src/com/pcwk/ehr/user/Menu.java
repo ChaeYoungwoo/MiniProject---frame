@@ -5,6 +5,8 @@ import java.util.Scanner;
 public class Menu {
 	CreateAccount createAccount = new CreateAccount();
 	Login login = new Login();
+	Deposit deposit = new Deposit();
+	AccountDao dao = new AccountDao();
 	Scanner scanner = new Scanner(System.in);
 
 	public void menu0() {
@@ -69,6 +71,7 @@ public class Menu {
 		int input = 0;
 
 		do {
+			dao.displayAllAccInfo();
 			System.out.println("┌────────────────────────┐");
 			System.out.println("│ WELCOME TO             │");
 			System.out.println("│ BABO BANKING SYSTEM !!!│");
@@ -91,6 +94,7 @@ public class Menu {
 			case 1: // 계좌 생성
 
 				createAccount.createAccount();
+				dao.displayAllAccInfo();
 				break;
 			case 2: // 로그인
 
@@ -98,18 +102,18 @@ public class Menu {
 				break;
 
 			case 3: // 입금
-//				if (getIsLogin() == true) {
-//					deposit();
-//				} else {
-//					System.out.println("잘못된 시도입니다.");
-//				}
-//				break;
+				if (login.getIsLogin() == true) {
+					deposit.deposit();
+				} else {
+					System.out.println("로그인 먼저 해주세요.");
+				}
+				break;
 
 			case 4: // 출금
 //				if (getIsLogin() == true) {
 //					withdraw();
 //				} else {
-//					System.out.println("잘못된 시도입니다.");
+//					System.out.println("로그인 먼저 해주세요.");
 //				}
 //				break;
 			case 5:
@@ -117,14 +121,14 @@ public class Menu {
 //				if (getIsLogin() == true) {
 //					transfer();
 //				} else {
-//					System.out.println("잘못된 시도입니다.");
+//					System.out.println("로그인 먼저 해주세요.");
 //				}
 			case 6:
 //				// 계좌 정보 조회 함수
 //				if (getIsLogin() == true) {
 //					displayAccInfo();
 //				} else {
-//					System.out.println("잘못된 시도입니다.");
+//					System.out.println("로그인 먼저 해주세요.");
 //				}
 //				break;
 
@@ -132,7 +136,7 @@ public class Menu {
 //				if (getIsLogin() == true) {
 //					reqAdmin();
 //				} else {
-//					System.out.println("잘못된 시도입니다.");
+//					System.out.println("로그인 먼저 해주세요.");
 //				}
 
 			case 0:

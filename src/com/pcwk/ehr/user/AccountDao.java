@@ -12,13 +12,10 @@ import com.pcwk.ehr.cmn.WorkDiv;
 
 public class AccountDao implements WorkDiv<AccountVO> {
 
-	private final String fileName = "C:\\Users\\채영우\\Desktop\\JAP_20240909\\01_JAVA\\WORKSPACE\\MiniProject\\src\\com\\pcwk\\ehr\\user\\accounts.txt"; // accounts.txt(계좌 정보 들어있는 파일)
 	public static List<AccountVO> accounts = new ArrayList<AccountVO>(); // 계좌 정보를 담을 arraylist
-
+	
 	public AccountDao() {
 
-		int count = readFile(fileName); // 몇 개의 계좌가 저장되어 있나 count
-		displayAllAccInfo();
 	}
 	
 	 public void displayAllAccInfo() { 
@@ -26,24 +23,19 @@ public class AccountDao implements WorkDiv<AccountVO> {
 	            System.out.println("등록된 멤버가 없습니다.");
 	            return;
 	        }
-
+	        int i = 1;
+	        System.out.println(accounts.size());
 	        for (AccountVO account : accounts) {
+	        	
+	        	System.out.println(i + "번 계좌");
 	            System.out.println("계좌번호: " + account.getAccountNo() +
 	                    ", 이름: " + account.getUserName() +
 	                    ", 생년월일: " + account.getUserDob() +
+	                    ", 가입일: " + account.getRegDt() + 
 	                    ", 잔액: " + account.getBalance());
+	            i++;
 	        }
 	    }
-//		public void displayList(List<AccountVO> list) { 
-//
-//			if (list.size() > 0) {
-//				for (AccountVO vo : list) {
-//					System.out.println(vo);
-//				}
-//			} else {
-//				System.out.println("회원 정보가 없습니다.");
-//			}
-//		}
 
 	/**
 	 * 1(성공)/0(실패)/2(memberId 중복)
@@ -106,8 +98,8 @@ public class AccountDao implements WorkDiv<AccountVO> {
 	@Override
 	public AccountVO doSelectOne(AccountVO param) {
 		//accounts에서 계좌번호가 맞는 계좌의 정보 전체를 return
+	
 		AccountVO outVO = null;
-		
 		for(AccountVO vo : accounts) {
 			if(vo.getAccountNo().equals(param.getAccountNo())) {
 				outVO = vo;

@@ -10,27 +10,32 @@ public class Login {
 	Scanner scanner = new Scanner(System.in);
 
 	public Login() {
-
+		
+	}
+	public boolean getIsLogin() {
+		return isLogin;
 	}
 
-
+	public void setIsLogin(boolean isLogin) {
+		this.isLogin = isLogin;
+	}
+	
 	public void Login() {
 
-		System.out.print("계좌번호를 입력하세요: "); 
+		System.out.print("계좌번호를 입력하세요: ");
 		inputAN = scanner.nextLine();
 
 		System.out.print("비밀번호를 입력하세요: ");
 		inputPw = scanner.nextLine();
-		
-		for(AccountVO account : AccountDao.accounts) {
-			if(account.getAccountNo().equals(inputAN) && account.getUserPw().equals(inputPw)) {
+
+		for (AccountVO account : AccountDao.accounts) {
+			if (account.getAccountNo().equals(inputAN) && account.getUserPw().equals(inputPw)) {
 				System.out.println("로그인 성공!");
-				isLogin = true;
+				setIsLogin(true);
+				AccountVO.loginVO = account;
 				return;
 			}
-			
-			System.out.println("로그인 실패! 계좌번호 혹은 비밀번호가 일치하지 않습니다.");
-			isLogin = false;
-		} 
+		}
+		System.out.println("계좌번호 혹은 비밀번호가 일치하지 않습니다.");
 	} // Login() end
 }

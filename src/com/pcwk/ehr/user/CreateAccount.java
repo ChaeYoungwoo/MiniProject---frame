@@ -15,7 +15,7 @@ public class CreateAccount {
 		AccountVO out = null;
 		System.out.println("회원가입");
 		//계좌번호
-        int ranNo = 999991000 + ((int) (Math.random() * 100 + 1));
+        int ranNo = 99991000 + ((int) (Math.random() * 100 + 1));
         String accNo = Integer.toString(ranNo); 
 
         //소유주명
@@ -23,16 +23,17 @@ public class CreateAccount {
         String userName=sc.nextLine();
         catchMethod.check_Input(userName,"이름");
 
-        //비밀번호
-        System.out.print("설정하실 비밀번호를 입력하세요: ");
-        String userPw = sc.nextLine();
-        catchMethod.check_Input(userPw,"비밀번호");
 
         //생년월일
         System.out.print("본인의 생년월일을 입력하세요: ");
         String userDob = sc.nextLine();// 생년월일
         catchMethod.check_Input(userDob,"생년월일");
         
+        //비밀번호
+        System.out.print("설정하실 비밀번호를 입력하세요: ");
+        String userPw = sc.nextLine();
+        catchMethod.check_Input(userPw,"비밀번호");
+
         //가입일
         Calendar calendar =  Calendar.getInstance();
         String currentDate = String.format("%02d/%02d/%02d", calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH));
