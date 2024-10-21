@@ -10,7 +10,7 @@ public class Deposit {
 	}
 
 	public void deposit() {
-		
+		System.out.println("===== 입금 =====");
 		System.out.print("계좌에 입금하실 금액을 입력해주세요: ");
 		double depositAmount = scanner.nextDouble();
 		

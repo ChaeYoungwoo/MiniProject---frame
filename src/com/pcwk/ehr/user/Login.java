@@ -21,7 +21,7 @@ public class Login {
 	}
 	
 	public void Login() {
-
+		System.out.println("===== 로그인 =====");
 		System.out.print("계좌번호를 입력하세요: ");
 		inputAN = scanner.nextLine();
 

@@ -33,9 +33,23 @@ public class AccountDao implements WorkDiv<AccountVO> {
 	                    ", 생년월일: " + account.getUserDob() +
 	                    ", 가입일: " + account.getRegDt() + 
 	                    ", 잔액: " + account.getBalance());
+	            System.out.println();
 	            i++;
 	        }
 	    }
+	 
+	 public void displayLoginAccInfo() {
+		 if(accounts.isEmpty()) {
+			 System.out.println("로그인 된 계좌가 없습니다.");
+			 return;
+		 } 
+		 System.out.println("===== 계좌 정보 =====");
+		 System.out.println("계좌번호: " + AccountVO.loginVO.getAccountNo());
+		 System.out.println("소유주명: " + AccountVO.loginVO.getUserName());
+		 System.out.println("생년월일: " + AccountVO.loginVO.getUserDob());
+		 System.out.println("가입일: " + AccountVO.loginVO.getRegDt());
+		 System.out.println("잔액: " + AccountVO.loginVO.getBalance());
+	 }
 
 	/**
 	 * 1(성공)/0(실패)/2(memberId 중복)

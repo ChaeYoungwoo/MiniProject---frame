@@ -13,7 +13,7 @@ public class CreateAccount {
 	
 	public AccountVO createAccount() {
 		AccountVO out = null;
-		System.out.println("회원가입");
+		System.out.println("===== 회원가입 =====");
 		//계좌번호
         int ranNo = 99991000 + ((int) (Math.random() * 100 + 1));
         String accNo = Integer.toString(ranNo); 
@@ -36,7 +36,7 @@ public class CreateAccount {
 
         //가입일
         Calendar calendar =  Calendar.getInstance();
-        String currentDate = String.format("%02d/%02d/%02d", calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH));
+        String currentDate = String.format("%02d/%02d/%02d", calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH)+1, calendar.get(Calendar.DAY_OF_MONTH));
         String regDt = currentDate;
 
         //권한명

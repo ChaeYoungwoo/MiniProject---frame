@@ -3,9 +3,12 @@ package com.pcwk.ehr.user;
 import java.util.Scanner;
 
 public class Menu {
-	CreateAccount createAccount = new CreateAccount();
-	Login login = new Login();
-	Deposit deposit = new Deposit();
+	CreateAccount createAccount = new CreateAccount(); // 계좌 생성
+	Login login = new Login(); // 로그인 
+	Deposit deposit = new Deposit(); // 입금
+	RequestAdmin reqAdmin = new RequestAdmin(); // 계좌 삭제 관리자에게 요청
+	ChangePw changePw = new ChangePw(); // 비밀번호 변경 (사용자)
+	
 	AccountDao dao = new AccountDao();
 	Scanner scanner = new Scanner(System.in);
 
@@ -13,6 +16,7 @@ public class Menu {
 
 		int input1 = 100;
 		while (input1 != 0) {
+			System.out.println("====================================");
 			System.out.println("┌────────────────────────┐");
 			System.out.println("│ WELCOME TO             │");
 			System.out.println("│ BABO BANKING SYSTEM !!!│");
@@ -20,7 +24,9 @@ public class Menu {
 			System.out.println("1. 관리자모드");
 			System.out.println("2. 사용자모드");
 			System.out.println("0. 종료");
+			System.out.println("====================================");
 			System.out.print("입력: ");
+			
 			input1 = scanner.nextInt();
 			switch (input1) {
 			case 1:
@@ -43,6 +49,7 @@ public class Menu {
 		int input2 = 0;
 
 		do {
+			System.out.println("====================================");
 			System.out.println("┌────────────────────────────────┐");
 			System.out.println("│  BABO BANK ADMINISTRATOR MODE  │");
 			System.out.println("└────────────────────────────────┘");
@@ -51,7 +58,10 @@ public class Menu {
 			System.out.println("2. 계좌 비밀번호 변경 ");
 			System.out.println("3. 계좌 삭제");
 			System.out.println("0. 관리자 모드 종료");
+			System.out.println("====================================");
 			System.out.print("입력: ");
+			
+
 			input2 = scanner.nextInt();
 			switch (input2) {
 			case 1:
@@ -71,7 +81,7 @@ public class Menu {
 		int input = 0;
 
 		do {
-			dao.displayAllAccInfo();
+			System.out.println("====================================");
 			System.out.println("┌────────────────────────┐");
 			System.out.println("│ WELCOME TO             │");
 			System.out.println("│ BABO BANKING SYSTEM !!!│");
@@ -83,18 +93,17 @@ public class Menu {
 			System.out.println("4. 출금");
 			System.out.println("5. 송금");
 			System.out.println("6. 계좌 정보 조회");
-			System.out.println("7. 계좌 삭제 / 계좌 비밀번호 변경 (관리자에게 요청)");
+			System.out.println("7. 계좌 비밀번호 변경");
+			System.out.println("8. 계좌 삭제 (관리자에게 요청)");
 			System.out.println("0. 사용자 모드 종료");
-
+			System.out.println("====================================");
 			System.out.print("입력: ");
 			input = scanner.nextInt();
-			System.out.println("====================================");
+			
 
 			switch (input) {
 			case 1: // 계좌 생성
-
 				createAccount.createAccount();
-				dao.displayAllAccInfo();
 				break;
 			case 2: // 로그인
 
@@ -124,23 +133,35 @@ public class Menu {
 //					System.out.println("로그인 먼저 해주세요.");
 //				}
 			case 6:
-//				// 계좌 정보 조회 함수
-//				if (getIsLogin() == true) {
-//					displayAccInfo();
-//				} else {
-//					System.out.println("로그인 먼저 해주세요.");
-//				}
-//				break;
-
+				// 계좌 정보 조회 함수
+				if (login.getIsLogin() == true) {
+					dao.displayLoginAccInfo();
+				} else {
+					System.out.println("로그인 먼저 해주세요.");
+				}
+				break;
 			case 7:
-//				if (getIsLogin() == true) {
-//					reqAdmin();
-//				} else {
-//					System.out.println("로그인 먼저 해주세요.");
-//				}
-
+				// 비밀번호 변경 (사용자)
+				if(login.getIsLogin() == true) {
+					changePw.changePw();
+				} else {
+					System.out.println("로그인 먼저 해주세요.");
+				}
+				dao.displayLoginAccInfo();
+				dao.displayAllAccInfo();
+				break;
+				
+			case 8:
+				// 계좌 삭제 (관리자에게 요청)
+				if (login.getIsLogin() == true) {
+					reqAdmin.RequestAdmin();
+				} else {
+					System.out.println("로그인 먼저 해주세요.");
+				}
+				break;
 			case 0:
-				System.out.println("프로그램을 종료합니다.");
+				// 사용자 모드 종료
+				System.out.println("메인 메뉴로 돌아갑니다.");
 				break;
 			}
 
